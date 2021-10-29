@@ -1,0 +1,10 @@
+﻿@model MenuViewModel
+
+<input asp-for="Id" hidden />
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="MenuName"></label>
+    <input asp-for="MenuName" class="form-control" placeholder="Insert menu name"/>
+    <span asp-validation-for="MenuName" class="text-danger"></span>
+</div>

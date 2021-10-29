@@ -1,0 +1,17 @@
+﻿@model DishViewModel
+
+<h1>Edit Dish - @Model.Id</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Dish" asp-action="Edit">
+
+            <partial name="_FormDish" model="Model" />
+
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-dark">Back To List</a>
+            </div>
+        </form>
+    </div>
+</div>
