@@ -9,5 +9,8 @@ namespace Restaurant.Core.Interfaces
 {
     public interface IRepositoryMenu : IRepository<Menu>
     {
+        public bool PutDishToMenu(int idMenu, int idDish);
+        public bool LeaveDishFromMenu(int idMenu, int idDish);
+        //public Menu GetMenu(int id);
     }
 }

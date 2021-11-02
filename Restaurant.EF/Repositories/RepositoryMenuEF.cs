@@ -27,6 +27,18 @@ namespace Restaurant.EF.Repositories
             return true;
         }
 
+        public bool PutDishToMenu(int idMenu, int idDish)
+        {
+            if (idMenu <= 0 || idDish <= 0)
+                return false;
+
+            var menu = ctx.Menus.Find(idMenu);
+            var dish = ctx.Dishes.Find(idDish);
+            menu.Dishes.Add(dish);
+            ctx.SaveChanges();
+            return true;
+        }
+
         public bool DeleteItem(int id)
         {
             throw new NotImplementedException();
@@ -35,9 +47,9 @@ namespace Restaurant.EF.Repositories
         public IEnumerable<Menu> Fetch(Func<Menu, bool> filter = null)
         {
             if (filter != null)
-                return ctx.Menus.Where(filter);
+                return ctx.Menus.Include(m => m.Dishes).Where(filter);
 
-            return ctx.Menus;
+            return ctx.Menus.Include(m => m.Dishes);
         }
 
         public Menu GetById(int id)
@@ -51,6 +63,18 @@ namespace Restaurant.EF.Repositories
         public bool UpdateItem(Menu item)
         {
             throw new NotImplementedException();
+        }
+
+        public bool LeaveDishFromMenu(int idMenu, int idDish)
+        {
+            if (idMenu <= 0 || idDish <= 0)
+                return false;
+
+            var menu = ctx.Menus.Find(idMenu);
+            var dish = ctx.Dishes.Find(idDish);
+            menu.Dishes.Remove(dish);
+            ctx.SaveChanges();
+            return true;
         }
     }
 }

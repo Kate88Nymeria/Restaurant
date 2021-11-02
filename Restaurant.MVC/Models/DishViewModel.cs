@@ -22,6 +22,6 @@ namespace Restaurant.MVC.Models
         public decimal Price { get; set; }
 
         [Required]
-        public Menu Menu { get; set; }
+        public int MenuId { get; set; }
     }
 }

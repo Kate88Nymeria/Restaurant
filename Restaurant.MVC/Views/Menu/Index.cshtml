@@ -23,8 +23,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="btn btn-warning">@Html.ActionLink(item.MenuName, "Index", "Dish", new { id = item.Id })</td> 
+                <td>@item.MenuName</td>
+                <td>
+                    <a type="button" asp-controller="Menu" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                </td>
+                @*<td class="btn btn-warning">@Html.ActionLink(item.MenuName, "Details", "Menu", new { id = item.Id })</td>*@
+                @*<td class="btn btn-warning">@Html.ActionLink(item.MenuName, "Index", "Dish", new { id = item.Id })</td>*@
             </tr>
         }
     </tbody>
 </table>
+
+<br />
+<a asp-controller="Home" asp-action="Index" class="btn btn-dark">Back</a>

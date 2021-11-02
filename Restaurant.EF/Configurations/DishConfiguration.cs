@@ -28,8 +28,8 @@ namespace Restaurant.EF.Configurations
             builder.HasOne(d => d.Menu)
                    .WithMany(m => m.Dishes);
 
-            builder.Property(d => d.MenuID)
-                   .IsRequired();
+            //builder.Property(d => d.MenuID)
+            //       .IsRequired();
 
 
             builder.HasData(
@@ -38,24 +38,21 @@ namespace Restaurant.EF.Configurations
                     Id = 1,
                     DishName = "Lasagne",
                     DishType = DishType.First,
-                    Price = 8.20M,
-                    MenuID = 1
+                    Price = 8.20M
                 },
                 new Dish
                 {
                     Id = 2,
                     DishName = "Fish and Chips",
                     DishType = DishType.Second,
-                    Price = 6.90M,
-                    MenuID = 3
+                    Price = 6.90M
                 },
                 new Dish
                 {
                     Id = 3,
                     DishName = "Cheesecake",
                     DishType = DishType.Dessert,
-                    Price = 5.30M,
-                    MenuID = 2
+                    Price = 5.30M
                 }
             );
         }

@@ -49,18 +49,21 @@ namespace Restaurant.MVC.Helpers
 
         #region MENU
 
-        public static IEnumerable<SelectListItem> FromListToSelectList(this IEnumerable<Menu> menuList)
-        {
-            return menuList.Select(
-                e => new SelectListItem() { Text = e.MenuName, Value = e.MenuName }).ToList();
-        }
+        //public static IEnumerable<SelectListItem> FromListToSelectList(this IEnumerable<Menu> menuList)
+        //{
+        //    return menuList.Select(
+        //        e => new SelectListItem() { Text = e.MenuName, Value = e.MenuName }).ToList();
+        //}
 
         public static MenuViewModel ToViewModel(this Menu menu)
         {
+            var dishesViewModel = menu.Dishes.ToListViewModel();
             return new MenuViewModel
             {
                 Id = menu.Id,
-                MenuName = menu.MenuName
+                MenuName = menu.MenuName,
+                Dishes = dishesViewModel,
+                TotalPrice = dishesViewModel.Sum( d => d.Price)
             };
         }
 

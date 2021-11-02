@@ -23,7 +23,11 @@ namespace Restaurant.Core.Interfaces
 
         IEnumerable<Menu> FetchMenus(Func<Menu, bool> filter = null);
         Menu GetMenuById(int id);
+        //Menu GetMenuWithDishes(int id);
         ResultBL CreateMenu(Menu newMenu);
+
+        bool AssignDishToMenu(int idMenu, int idDish);
+        bool DecoupleDishToMenu(int idMenu, int idDish);
 
         #endregion
 

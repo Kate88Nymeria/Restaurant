@@ -12,7 +12,7 @@ namespace Restaurant.Core.Entities
         public string DishName { get; set; }
         public DishType DishType { get; set; }
         public decimal Price { get; set; }
-        public int MenuID { get; set; }
+        public int? MenuID { get; set; }
         public Menu Menu { get; set; }
     }
 

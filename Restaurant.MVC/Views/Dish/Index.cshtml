@@ -37,6 +37,10 @@
                     <td>
                         <a type="button" value="Edit" asp-controller="Dish" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                         <a type="button" value="Delete" asp-controller="Dish" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        @if(item.MenuId == 0)
+                    {
+                        <a asp-controller="Dish" asp-action="Assign" asp-route-id="@item.Id" class="btn btn-warning">Assign</a>
+                    }
                     </td>
                 }
             </tr>
@@ -44,5 +48,6 @@
     </tbody>
 </table>
 
+
 <br />
-<a asp-controller="Menu" asp-action="Index" class="btn btn-dark">Back To Menus</a>
+<a asp-controller="Home" asp-action="Index" class="btn btn-dark">Back</a>

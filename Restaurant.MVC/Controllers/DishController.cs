@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Restaurant.Core.Entities;
 using Restaurant.Core.Interfaces;
 using Restaurant.MVC.Helpers;
@@ -30,6 +31,7 @@ namespace Restaurant.MVC.Controllers
         {
             LoadViewBag();
             return View(new DishViewModel());
+            return View();
         }
         [HttpPost]
         public IActionResult Create(DishViewModel model)
@@ -107,14 +109,34 @@ namespace Restaurant.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Assign(int id)
+        {
+            var dish = mainBL.FetchDishes().FirstOrDefault(d => d.Id == id);
 
+            ViewBag.Menus = new SelectList(mainBL.FetchMenus().Select(m => m.MenuName));
+            return View(new AssignmentDishViewModel { Id = id });
+        }
+
+        [HttpPost]
+        public IActionResult Assign(AssignmentDishViewModel dishToAssign)
+        {
+            var menu = mainBL.FetchMenus().FirstOrDefault(m => m.MenuName == dishToAssign.MenuName);
+            mainBL.AssignDishToMenu(menu.Id, dishToAssign.Id);
+            return Redirect("/");
+        }
 
         private void LoadViewBag()
         {
             ViewBag.Categories = MappingExtensions.FromEnumToSelectList<DishType>();
-            var menuList = mainBL.FetchMenus();
+            //var menuList = mainBL.FetchMenus();
 
-            ViewBag.Menus = menuList.FromListToSelectList();
+            //ViewBag.Menus = menuList.FromListToSelectList();
+        }
+
+        public IActionResult Details(int id)
+        {
+            var model = mainBL.GetDishById(id);
+            return View(model);
         }
     }
 }

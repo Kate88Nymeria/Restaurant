@@ -47,5 +47,26 @@ namespace Restaurant.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Details(int id)
+        {
+            var model = mainBL.GetMenuById(id);
+            return View(model.ToViewModel());
+
+            //if (id <= 0)
+            //    return View("NotFound");
+            //var menu = this.mainBL.GetMenuById(id);
+            //if (menu == null)
+            //    return View("NotFound");
+            //var menuMapped = menu.ToViewModel();
+            //return View(menuMapped);
+        }
+
+        [Route("Menu/Decouple/{dishId}/{menuId}")]
+        public IActionResult Decouple(int dishId, int menuId)
+        {
+            var model = mainBL.DecoupleDishToMenu(menuId, dishId);
+            return Json(model);
+        }
     }
 }

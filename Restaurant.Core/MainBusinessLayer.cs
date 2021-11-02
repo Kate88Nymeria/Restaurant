@@ -91,6 +91,22 @@ namespace Restaurant.Core
             return this.repoMenu.GetById(id);
         }
 
+        public bool AssignDishToMenu(int idMenu, int idDish)
+        {
+            repoMenu.PutDishToMenu(idMenu, idDish);
+            return true;
+        }
+
+        public bool DecoupleDishToMenu(int idMenu, int idDish)
+        {
+            return repoMenu.LeaveDishFromMenu(idMenu, idDish);
+        }
+
+        //public Menu GetMenuWithDishes(int id)
+        //{
+        //    return repoMenu.GetMenu(id);
+        //}
+
         #endregion
 
         #region USER

@@ -1,0 +1,15 @@
+﻿@model AssignmentDishViewModel
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="MenuName">Choose the menù...</label>
+        <select asp-for="MenuName" asp-items="@ViewBag.Menus" class="form-control">
+            <option value="">Please select a value...</option>
+        </select>
+    </div>
+
+    <input type="submit" value="Assign" class="btn btn-success"/>
+    <a asp-controller="Dish" asp-action="Index" class="btn btn-dark">Back To List</a>
+</form>

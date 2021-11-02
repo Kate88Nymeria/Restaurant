@@ -13,5 +13,8 @@ namespace Restaurant.MVC.Models
         [Required]
         [MaxLength(100, ErrorMessage = "Max 100 characters")]
         public string MenuName { get; set; }
+
+        public decimal TotalPrice { get; set; }
+        public IEnumerable<DishViewModel> Dishes { get; set; }
     }
 }
